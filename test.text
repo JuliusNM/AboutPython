@@ -1,0 +1,179 @@
+elements = ('foo', 'bar', 'baz')
+for elem in elements:
+print elem
+
+foo
+bar
+baz
+>>> for count, elem in enumerate(elements):
+...     print count, elem
+... 
+0 foo
+1 bar
+2 baz
+
+min_price = min(min_price, current_price)
+
+max_profit = max(max_profit, potential_profit)
+
+list=[1.1412, 4.3453, 5.8709, 0.1314]
+list.index(min(list))
+
+
+
+
+
+
+
+def get_max_profit(stock_prices_yesterday):
+
+    min_price = stock_prices_yesterday[0]
+    max_profit = 0
+
+    for current_price in stock_prices_yesterday:
+
+        # ensure min_price is the lowest price we've seen so far
+        min_price = min(min_price, current_price)
+
+        # see what our profit would be if we bought at the
+        # min price and sold at the current price
+        potential_profit = current_price - min_price
+
+        # update max_profit if we can do better
+        max_profit = max(max_profit, potential_profit)
+
+    return max_profit
+
+get_max_profit([7, 4, 2, 75])
+
+
+
+  if len(stock_prices_yesterday) < 2:
+    raise IndexError('Getting a profit requires at least 2 prices')
+
+min_price = stock_prices_yesterday[0]
+max_profit = stock_prices_yesterday[1] - stock_prices_yesterday[0]
+
+# etc...
+
+
+  def get_max_profit(stock_prices_yesterday):
+
+    # make sure we have at least 2 prices
+    if len(stock_prices_yesterday) < 2:
+        raise IndexError('Getting a profit requires at least 2 prices')
+
+    # we'll greedily update min_price and max_profit, so we initialize
+    # them to the first price and the first possible profit
+    min_price = stock_prices_yesterday[0]
+    max_profit = stock_prices_yesterday[1] - stock_prices_yesterday[0]
+
+    for index, current_price in enumerate(stock_prices_yesterday):
+
+        # skip the first (0th) time
+        # we can't sell at the first time, since we must buy first,
+        # and we can't buy and sell at the same time!
+        # if we took this out, we'd try to buy *and* sell at time 0.
+        # this would give a profit of 0, which is a problem if our
+        # max_profit is supposed to be *negative*--we'd return 0.
+
+        if index == 0:
+            continue
+
+        # see what our profit would be if we bought at the
+        # min price and sold at the current price
+        potential_profit = current_price - min_price
+
+        # update max_profit if we can do better
+        max_profit = max(max_profit, potential_profit)
+
+        # update min_price so it's always
+        # the lowest price we've seen so far
+        min_price  = min(min_price, current_price)
+
+    return max_profit
+
+for index, current_price in enumerate(stock_prices_yesterday):
+
+  def get_products_of_all_ints_except_at_index(int_list):
+
+    if len(int_list) < 2:
+        raise IndexError('Getting the product of numbers at other '
+                         'indices requires at least 2 numbers')
+
+    # we make a list with the length of the input list to
+    # hold our products
+    products_of_all_ints_except_at_index = [None] * len(int_list)
+
+    # for each integer, we find the product of all the integers
+    # before it, storing the total product so far each time
+    product_so_far = 1
+    i = 0
+    while i < len(int_list):
+        products_of_all_ints_except_at_index[i] = product_so_far
+        product_so_far *= int_list[i]
+        i += 1
+
+    # for each integer, we find the product of all the integers
+    # after it. since each index in products already has the
+    # product of all the integers before it, now we're storing
+    # the total product of all other integers
+    product_so_far = 1
+    i = len(int_list) - 1
+    while i >= 0:
+        products_of_all_ints_except_at_index[i] *= product_so_far
+        product_so_far *= int_list[i]
+        i -= 1
+
+    return products_of_all_ints_except_at_index
+
+
+
+   
+
+
+    def facr(x):
+    if x == 0:
+        return 1
+    return x* facr(x-1)
+
+
+x=int(raw_input())
+
+print facr(x)
+
+
+
+
+n=int(raw_input())
+d=dict()
+for i in range(1,n+1):
+    d[i]=i*i
+
+print d
+
+
+def splitstr(S, N):
+    
+    S = raw_input()
+    N = int(raw_input())
+    substrings = S.split()
+    subs = []
+    
+    if len(S)%N == 0 or len(S)%N != 0:
+        for i in range(0, len(S), N):
+            subs.append("".join(S[i:i+N]))
+
+print subs
+
+
+S = raw_input()
+N = int(raw_input())
+substrings = S.split()
+subs = []
+if len(S)%N == 0 or len(S)%N != 0:
+        for i in range(0, len(S), N):
+            subs.append("".join(S[i:i+N]))
+            
+print subs
+    
